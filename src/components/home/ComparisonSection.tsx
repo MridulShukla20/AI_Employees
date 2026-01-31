@@ -39,7 +39,7 @@ export function ComparisonSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-card rounded-2xl p-8 border border-border shadow-soft"
+            className="bg-card rounded-2xl p-8 border border-border shadow-soft hover-card"
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center">
@@ -76,11 +76,11 @@ export function ComparisonSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-card rounded-2xl p-8 border border-primary/20 shadow-soft relative overflow-hidden"
+            className="bg-card rounded-2xl p-8 border border-primary/20 shadow-soft hover-card relative overflow-hidden"
           >
             {/* Subtle glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
-            
+
             <div className="relative">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">

@@ -31,25 +31,25 @@ const plans = [
   },
   {
     name: "AI Employee",
-    description: "Add AI teammates to your workspace",
+    description: "For teams replacing manual work with AI employees",
     price: "$99",
     period: "per AI employee/month",
     highlight: true,
     features: [
       "Everything in Free, plus:",
-      "Full AI teammate capabilities",
+      "Full AI employee capabilities",
       "Conversational coaching",
       "Approval queue integration",
       "Weekly report cards",
       "Hard spending caps",
       "Priority support",
     ],
-    cta: "Add AI Teammate",
+    cta: "Add AI Employee",
     icon: Bot,
   },
   {
     name: "Team Bundle",
-    description: "Best value for growing teams",
+    description: "For teams scaling AI across functions",
     price: "$249",
     period: "per month",
     highlight: false,
@@ -74,14 +74,14 @@ const faqs = [
   },
   {
     question: "How does the approval queue work?",
-    answer: "Every action an AI teammate wants to take that affects external systems (sending emails, updating CRMs, publishing content) goes through your approval queue. You review, edit, or approve with one click.",
+    answer: "Every action an AI employee wants to take that affects external systems (sending emails, updating CRMs, publishing content) goes through your approval queue. You review, edit, or approve with one click.",
   },
   {
     question: "What are 'hard caps' on spending?",
     answer: "You set a maximum monthly budget for each AI employee. Once reached, the AI pauses work and notifies you. No surprise bills, ever.",
   },
   {
-    question: "How do I coach AI teammates?",
+    question: "How do I coach AI employees?",
     answer: "Through natural conversation. Tell them what you want, give feedback on their work, and they learn your preferences over time. No coding or configuration required.",
   },
   {
@@ -94,13 +94,41 @@ const faqs = [
   },
 ];
 
-const Pricing = () => {
-  const [aiEmployees, setAiEmployees] = useState([3]);
+const workloadItems = [
+  { id: "lead-enrichment", label: "Lead enrichment & research", credits: 150 },
+  { id: "outreach-drafting", label: "Outreach drafting & personalization", credits: 200 },
+  { id: "call-analysis", label: "Call analysis & coaching insights", credits: 150 },
+  { id: "content-creation", label: "Content creation & optimization", credits: 200 },
+];
 
-  const calculatePrice = () => {
-    const count = aiEmployees[0];
-    if (count <= 2) return count * 99;
-    return 249 + (count - 3) * 79; // Bundle discount for 3+
+const CREDITS_PER_EMPLOYEE = 1000;
+const PRICE_PER_EMPLOYEE = 99;
+
+const Pricing = () => {
+  const [selectedWorkloads, setSelectedWorkloads] = useState<string[]>(
+    workloadItems.map(item => item.id) // All selected by default
+  );
+  const [manualOverride, setManualOverride] = useState<number | null>(null);
+
+  const totalCredits = workloadItems
+    .filter(item => selectedWorkloads.includes(item.id))
+    .reduce((sum, item) => sum + item.credits, 0);
+
+  const calculatedEmployees = Math.max(1, Math.ceil(totalCredits / CREDITS_PER_EMPLOYEE));
+  const aiEmployeesRequired = manualOverride !== null
+    ? Math.max(calculatedEmployees, manualOverride)
+    : calculatedEmployees;
+
+  const monthlyPrice = aiEmployeesRequired * PRICE_PER_EMPLOYEE;
+  const creditsIncluded = aiEmployeesRequired * CREDITS_PER_EMPLOYEE;
+
+  const toggleWorkload = (id: string) => {
+    setSelectedWorkloads(prev =>
+      prev.includes(id)
+        ? prev.filter(item => item !== id)
+        : [...prev, id]
+    );
+    setManualOverride(null); // Reset override when workload changes
   };
 
   return (
@@ -135,6 +163,11 @@ const Pricing = () => {
       {/* Pricing Cards */}
       <section className="py-16">
         <div className="container mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Choose how your team collaborates with AI
+            </h2>
+          </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {plans.map((plan, index) => (
               <motion.div
@@ -142,11 +175,10 @@ const Pricing = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={`relative rounded-2xl p-8 border ${
-                  plan.highlight
-                    ? "border-primary bg-card shadow-elevated"
-                    : "border-border bg-card shadow-soft"
-                }`}
+                className={`relative rounded-2xl p-8 border transition-all duration-200 ${plan.highlight
+                  ? "border-primary border-2 bg-card shadow-[0_8px_24px_rgba(147,51,234,0.15)] hover:shadow-[0_12px_32px_rgba(147,51,234,0.25)] hover:-translate-y-1"
+                  : "border-border bg-card shadow-soft opacity-[0.98] hover:opacity-100 hover-card"
+                  }`}
               >
                 {plan.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -156,25 +188,23 @@ const Pricing = () => {
                   </div>
                 )}
 
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    plan.highlight ? "gradient-primary" : "bg-muted"
-                  }`}>
-                    <plan.icon className={`w-5 h-5 ${
-                      plan.highlight ? "text-primary-foreground" : "text-muted-foreground"
-                    }`} />
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${plan.highlight ? "gradient-primary" : "bg-muted"
+                    }`}>
+                    <plan.icon className={`w-5 h-5 ${plan.highlight ? "text-primary-foreground" : "text-muted-foreground"
+                      }`} />
                   </div>
                   <h3 className="font-semibold text-lg">{plan.name}</h3>
                 </div>
 
-                <p className="text-sm text-muted-foreground mb-6">{plan.description}</p>
+                <p className="text-sm text-muted-foreground mb-6 pl-[52px]">{plan.description}</p>
 
                 <div className="mb-6">
                   <span className="text-4xl font-bold">{plan.price}</span>
                   <span className="text-muted-foreground text-sm ml-2">{plan.period}</span>
                 </div>
 
-                <Button 
+                <Button
                   className={`w-full mb-6 ${plan.highlight ? "shadow-glow" : ""}`}
                   variant={plan.highlight ? "default" : "outline"}
                 >
@@ -195,63 +225,135 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Credit Calculator */}
-      <section className="py-16 bg-muted/30">
+      {/* Pricing Principles */}
+      <section className="py-12">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-lg font-semibold text-center mb-8">Why PrimeRole pricing works</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="flex items-start gap-3 p-3 rounded-lg hover-card cursor-default">
+                <Users className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-sm">Humans are always free</p>
+                  <p className="text-xs text-muted-foreground">Invite your entire team at no cost</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded-lg hover-card cursor-default">
+                <Shield className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-sm">Hard caps prevent surprise bills</p>
+                  <p className="text-xs text-muted-foreground">AI pauses when limits are reached</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded-lg hover-card cursor-default">
+                <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-sm">Weekly report cards show outcomes</p>
+                  <p className="text-xs text-muted-foreground">See what AI accomplished, not usage</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Capacity Planner */}
+      <section className="py-12 bg-muted/20">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-2xl mx-auto"
+            className="max-w-xl mx-auto"
           >
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                Calculate Your Investment
-              </h2>
-              <p className="text-muted-foreground">
-                See how much value you can unlock with AI teammates.
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-semibold mb-2">
+                Capacity Planner <span className="text-muted-foreground/60 font-normal">(Optional)</span>
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Most teams start with one AI Employee. This helps validate capacity if you're unsure.
               </p>
             </div>
 
-            <div className="bg-card rounded-2xl p-8 border border-border shadow-soft">
-              <div className="mb-8">
+            <div className="bg-card/50 rounded-xl p-6 border border-border/50 space-y-5">
+              {/* Section 1: What Your AI Employees Will Do */}
+              <div className="bg-muted/50 rounded-xl p-6 border border-border">
+                <h3 className="font-semibold mb-4">What Your AI Employees Will Do</h3>
+                <div className="space-y-3">
+                  {workloadItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => toggleWorkload(item.id)}
+                      className="w-full flex items-center justify-between py-2 text-left hover:bg-muted/50 rounded-lg px-2 -mx-2 transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${selectedWorkloads.includes(item.id)
+                          ? "border-primary bg-primary/10"
+                          : "border-muted-foreground/30 bg-transparent"
+                          }`}>
+                          {selectedWorkloads.includes(item.id) && (
+                            <Check className="w-3 h-3 text-primary" />
+                          )}
+                        </div>
+                        <span className="text-sm font-medium">{item.label}</span>
+                      </div>
+                      <span className="text-xs text-muted-foreground">≈ {item.credits} credits/month</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground mt-4">
+                  This helps estimate whether your work fits within one AI Employee's monthly capacity.
+                </p>
+              </div>
+
+              {/* Section 2: AI Employees Required */}
+              <div className="bg-muted/50 rounded-xl p-6 border border-border">
                 <div className="flex items-center justify-between mb-4">
-                  <label className="font-medium">Number of AI Employees</label>
-                  <span className="text-2xl font-bold text-primary">{aiEmployees[0]}</span>
+                  <h3 className="font-semibold">AI Employees Required</h3>
+                  <span className="text-2xl font-bold text-primary">{aiEmployeesRequired}</span>
                 </div>
                 <Slider
-                  value={aiEmployees}
-                  onValueChange={setAiEmployees}
+                  value={[manualOverride ?? calculatedEmployees]}
+                  onValueChange={(value) => setManualOverride(value[0])}
                   max={10}
-                  min={1}
+                  min={calculatedEmployees}
                   step={1}
                   className="w-full"
                 />
                 <div className="flex justify-between text-sm text-muted-foreground mt-2">
-                  <span>1 AI</span>
-                  <span>10 AI</span>
+                  <span>{calculatedEmployees}</span>
+                  <span>10</span>
                 </div>
-              </div>
-
-              <div className="pt-6 border-t border-border">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-muted-foreground">Monthly investment</span>
-                  <span className="text-3xl font-bold">${calculatePrice()}</span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {aiEmployees[0] >= 3 && (
-                    <span className="text-primary">Team Bundle discount applied!</span>
-                  )}
-                  {aiEmployees[0] < 3 && "Get 3+ AI employees for bundle pricing"}
+                <p className="text-xs text-muted-foreground mt-3">
+                  Most teams start with 1–2 AI Employees per function.
                 </p>
               </div>
 
-              <div className="mt-6 p-4 bg-muted rounded-lg">
+              {/* Section 3: Predictable Monthly Cost */}
+              <div className="bg-muted/50 rounded-xl p-6 border border-border border-l-4 border-l-primary">
+                <h3 className="font-semibold mb-4">Predictable Monthly Cost</h3>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">AI Employees</span>
+                    <span className="font-semibold tabular-nums">{aiEmployeesRequired} {aiEmployeesRequired === 1 ? 'employee' : 'employees'}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">Credits included</span>
+                    <span className="font-semibold tabular-nums">{creditsIncluded.toLocaleString()} credits/month</span>
+                  </div>
+                  <div className="flex items-center justify-between pt-3 border-t border-border">
+                    <span className="text-sm text-muted-foreground">Monthly price</span>
+                    <span className="text-3xl font-bold text-primary tabular-nums">${monthlyPrice}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reassurance note */}
+              <div className="p-4 bg-muted rounded-lg">
                 <div className="flex items-start gap-3">
-                  <HelpCircle className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
+                  <Shield className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <p className="text-sm text-muted-foreground">
-                    Human seats are always free. You only pay for AI employees. 
-                    Set hard caps to control spending.
+                    Human seats are always free. AI Employees pause automatically when hard caps are reached.
                   </p>
                 </div>
               </div>
@@ -261,18 +363,18 @@ const Pricing = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-24">
+      <section className="py-16">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">
               Frequently Asked Questions
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Everything you need to know about pricing and billing.
             </p>
           </motion.div>
@@ -283,17 +385,17 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto"
           >
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className="space-y-3">
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`faq-${index}`}
-                  className="bg-card border border-border rounded-xl px-6 data-[state=open]:shadow-soft"
+                  className="bg-card border border-border rounded-xl px-5 data-[state=open]:shadow-soft hover:bg-muted/30 transition-colors"
                 >
-                  <AccordionTrigger className="text-left font-medium hover:no-underline py-4">
+                  <AccordionTrigger className="text-left font-medium hover:no-underline py-3 text-sm">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-4">
+                  <AccordionContent className="text-muted-foreground pb-3 text-sm">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

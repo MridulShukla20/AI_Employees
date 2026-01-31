@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Users, Shield, CheckCircle } from "lucide-react";
+import { Users, Shield, CheckCircle, ArrowRight } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -9,7 +9,7 @@ export function HeroSection() {
       {/* Subtle gradient background */}
       <div className="absolute inset-0 gradient-subtle" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
-      
+
       <div className="container mx-auto px-6 py-24 md:py-32 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,8 +62,9 @@ export function HeroSection() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button size="lg" className="text-base px-8 h-12 shadow-elevated hover:shadow-glow transition-shadow">
+            <Button size="lg" className="text-base px-8 h-12 shadow-elevated hover:shadow-glow transition-shadow group">
               See How Collaboration Works
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button size="lg" variant="outline" className="text-base px-8 h-12">
               Start Free

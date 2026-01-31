@@ -146,4 +146,50 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Interactive hover states */
+  .hover-card {
+    transition: box-shadow 200ms ease-out, transform 200ms ease-out, border-color 200ms ease-out;
+  }
+
+  .hover-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .hover-pill {
+    transition: background-color 150ms ease-out;
+  }
+
+  .hover-pill:hover {
+    background-color: hsl(262 83% 58% / 0.08);
+  }
+
+  /* Focus states for accessibility */
+  .focus-ring:focus-visible {
+    outline: 2px solid hsl(262 83% 58% / 0.4);
+    outline-offset: 2px;
+  }
+
+  /* Pulse animation for CTA buttons */
+  @keyframes pulse-once {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  .animate-pulse-once {
+    animation: pulse-once 300ms ease-out 2s 1;
+  }
+
+  /* Smooth expand/collapse for progressive disclosure */
+  .expand-transition {
+    transition: max-height 250ms ease-out, opacity 250ms ease-out;
+    overflow: hidden;
+  }
+
+  /* Number transitions for price updates */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
 }
+

@@ -30,11 +30,10 @@ export function Header() {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.href
+                className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === link.href
                     ? "text-primary"
                     : "text-muted-foreground"
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
@@ -74,11 +73,10 @@ export function Header() {
                   key={link.href}
                   to={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === link.href
+                  className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === link.href
                       ? "text-primary"
                       : "text-muted-foreground"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>

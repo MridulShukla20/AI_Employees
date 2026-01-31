@@ -22,7 +22,7 @@ export function CTASection() {
             <span className="text-gradient">Add AI when you're ready.</span>
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-            Start with unlimited free human seats. Add AI teammates as your collaboration grows.
+            Start with unlimited free human seats. Add AI employees as your team grows.
           </p>
 
           <motion.div
@@ -31,7 +31,7 @@ export function CTASection() {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <Button size="lg" className="text-base px-8 h-14 shadow-elevated hover:shadow-glow transition-all group">
+            <Button size="lg" className="text-base px-8 h-14 shadow-elevated hover:shadow-glow transition-all group animate-pulse-once">
               Create Free Workspace
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
