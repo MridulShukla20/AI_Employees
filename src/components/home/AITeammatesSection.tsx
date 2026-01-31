@@ -7,7 +7,7 @@ const departments = [
   {
     icon: TrendingUp,
     title: "Sales & RevOps",
-    description: "AI teammates that research leads, draft outreach, and keep your CRM updated.",
+    description: "AI employees that research leads, draft outreach, and keep your CRM updated.",
     autonomous: ["Lead research & enrichment", "Email sequence drafting", "CRM data maintenance"],
     needsApproval: ["Sending emails to prospects", "Updating deal stages", "Creating new accounts"],
     metric: "2.3x pipeline generated",
@@ -15,7 +15,7 @@ const departments = [
   {
     icon: Megaphone,
     title: "Marketing",
-    description: "AI teammates that create content, analyze campaigns, and optimize performance.",
+    description: "AI employees that create content, analyze campaigns, and optimize performance.",
     autonomous: ["Content drafting & editing", "Campaign analytics", "Competitor monitoring"],
     needsApproval: ["Publishing content", "Budget allocation", "Brand messaging changes"],
     metric: "40% faster content production",
@@ -23,7 +23,7 @@ const departments = [
   {
     icon: UserPlus,
     title: "Recruitment",
-    description: "AI teammates that source candidates, screen resumes, and coordinate interviews.",
+    description: "AI employees that source candidates, screen resumes, and coordinate interviews.",
     autonomous: ["Candidate sourcing", "Resume screening", "Interview scheduling"],
     needsApproval: ["Reaching out to candidates", "Moving to next stage", "Offer recommendations"],
     metric: "60% reduction in time-to-hire",
@@ -42,7 +42,7 @@ export function AITeammatesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Meet Your AI Teammates
+            Meet Your AI Employees
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Role-based AI specialists that work inside your workflows, not outside them.
@@ -118,7 +118,7 @@ export function AITeammatesSection() {
         >
           <Link to="/marketplace">
             <Button variant="outline" size="lg" className="group">
-              Explore All AI Teammates
+              Explore All AI Employees
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
