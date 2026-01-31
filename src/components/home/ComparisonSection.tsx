@@ -86,7 +86,7 @@ export function ComparisonSection() {
                 <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
                   <Bot className="w-6 h-6 text-primary-foreground" />
                 </div>
-                <h3 className="text-xl font-semibold">AI Teammates</h3>
+                <h3 className="text-xl font-semibold">AI Employees</h3>
               </div>
 
               <div className="space-y-6">

@@ -23,7 +23,7 @@ import {
   Calendar
 } from "lucide-react";
 
-interface AITeammate {
+interface AIEmployee {
   id: string;
   name: string;
   role: string;
@@ -34,10 +34,10 @@ interface AITeammate {
   metric: string;
 }
 
-const salesTeammates: AITeammate[] = [
+const salesEmployees: AIEmployee[] = [
   {
-    id: "lead-researcher",
-    name: "Lead Researcher",
+    id: "data-revops-specialist",
+    name: "Data & RevOps Specialist",
     role: "Sales Intelligence",
     icon: Search,
     description: "Researches and enriches leads with company data, technographics, and buying signals.",
@@ -46,8 +46,8 @@ const salesTeammates: AITeammate[] = [
     metric: "85% data accuracy",
   },
   {
-    id: "outreach-writer",
-    name: "Outreach Writer",
+    id: "outreach-specialist",
+    name: "Outreach Specialist",
     role: "Sales Copywriting",
     icon: Mail,
     description: "Crafts personalized email sequences and follow-ups based on prospect research.",
@@ -56,8 +56,8 @@ const salesTeammates: AITeammate[] = [
     metric: "3x reply rates",
   },
   {
-    id: "crm-coordinator",
-    name: "CRM Coordinator",
+    id: "crm-data-operations-specialist",
+    name: "CRM & Data Operations Specialist",
     role: "Data Operations",
     icon: Database,
     description: "Keeps your CRM clean, updated, and synced across all connected tools.",
@@ -67,10 +67,10 @@ const salesTeammates: AITeammate[] = [
   },
 ];
 
-const marketingTeammates: AITeammate[] = [
+const marketingEmployees: AIEmployee[] = [
   {
-    id: "content-creator",
-    name: "Content Creator",
+    id: "content-marketing-specialist",
+    name: "Content Marketing Specialist",
     role: "Content Production",
     icon: PenTool,
     description: "Writes blog posts, social content, and marketing copy aligned with your brand voice.",
@@ -79,8 +79,8 @@ const marketingTeammates: AITeammate[] = [
     metric: "40% faster production",
   },
   {
-    id: "campaign-analyst",
-    name: "Campaign Analyst",
+    id: "marketing-performance-analyst",
+    name: "Marketing Performance Analyst",
     role: "Performance Analytics",
     icon: BarChart3,
     description: "Monitors campaign performance and surfaces optimization opportunities.",
@@ -89,8 +89,8 @@ const marketingTeammates: AITeammate[] = [
     metric: "25% ROAS improvement",
   },
   {
-    id: "competitor-watcher",
-    name: "Competitor Watcher",
+    id: "market-intelligence-specialist",
+    name: "Market Intelligence Specialist",
     role: "Market Intelligence",
     icon: Eye,
     description: "Tracks competitor activities, pricing changes, and market movements.",
@@ -100,10 +100,10 @@ const marketingTeammates: AITeammate[] = [
   },
 ];
 
-const recruitmentTeammates: AITeammate[] = [
+const recruitmentEmployees: AIEmployee[] = [
   {
-    id: "talent-sourcer",
-    name: "Talent Sourcer",
+    id: "talent-sourcing-specialist",
+    name: "Talent Sourcing Specialist",
     role: "Candidate Discovery",
     icon: Users,
     description: "Finds and qualifies candidates from job boards, LinkedIn, and your talent pool.",
@@ -112,8 +112,8 @@ const recruitmentTeammates: AITeammate[] = [
     metric: "5x candidate volume",
   },
   {
-    id: "resume-screener",
-    name: "Resume Screener",
+    id: "screening-specialist",
+    name: "Screening Specialist",
     role: "Application Review",
     icon: FileText,
     description: "Reviews applications against job requirements and ranks candidates by fit.",
@@ -122,8 +122,8 @@ const recruitmentTeammates: AITeammate[] = [
     metric: "80% time saved",
   },
   {
-    id: "interview-scheduler",
-    name: "Interview Scheduler",
+    id: "interview-coordination-specialist",
+    name: "Interview Coordination Specialist",
     role: "Coordination",
     icon: Calendar,
     description: "Coordinates interview schedules across candidates and hiring managers.",
@@ -134,12 +134,12 @@ const recruitmentTeammates: AITeammate[] = [
 ];
 
 const departmentData = {
-  sales: { teammates: salesTeammates, icon: TrendingUp, label: "Sales & RevOps" },
-  marketing: { teammates: marketingTeammates, icon: Megaphone, label: "Marketing" },
-  recruitment: { teammates: recruitmentTeammates, icon: UserPlus, label: "Recruitment" },
+  sales: { employees: salesEmployees, icon: TrendingUp, label: "Sales & RevOps" },
+  marketing: { employees: marketingEmployees, icon: Megaphone, label: "Marketing" },
+  recruitment: { employees: recruitmentEmployees, icon: UserPlus, label: "Recruitment" },
 };
 
-function TeammateCard({ teammate }: { teammate: AITeammate }) {
+function EmployeeCard({ employee }: { employee: AIEmployee }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -148,15 +148,15 @@ function TeammateCard({ teammate }: { teammate: AITeammate }) {
     >
       <div className="flex items-start gap-4 mb-4">
         <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center group-hover:shadow-glow transition-shadow shrink-0">
-          <teammate.icon className="w-6 h-6 text-primary-foreground" />
+          <employee.icon className="w-6 h-6 text-primary-foreground" />
         </div>
         <div>
-          <h3 className="font-semibold text-lg">{teammate.name}</h3>
-          <p className="text-sm text-muted-foreground">{teammate.role}</p>
+          <h3 className="font-semibold text-lg">{employee.name}</h3>
+          <p className="text-sm text-muted-foreground">{employee.role}</p>
         </div>
       </div>
 
-      <p className="text-muted-foreground text-sm mb-6">{teammate.description}</p>
+      <p className="text-muted-foreground text-sm mb-6">{employee.description}</p>
 
       <div className="space-y-4 mb-6">
         <div>
@@ -165,7 +165,7 @@ function TeammateCard({ teammate }: { teammate: AITeammate }) {
             <span>Works autonomously</span>
           </div>
           <div className="flex flex-wrap gap-2">
-            {teammate.autonomous.map((item) => (
+            {employee.autonomous.map((item) => (
               <Badge key={item} variant="secondary" className="text-xs">
                 {item}
               </Badge>
@@ -179,7 +179,7 @@ function TeammateCard({ teammate }: { teammate: AITeammate }) {
             <span>Requires approval</span>
           </div>
           <div className="flex flex-wrap gap-2">
-            {teammate.needsApproval.map((item) => (
+            {employee.needsApproval.map((item) => (
               <Badge key={item} variant="outline" className="text-xs">
                 {item}
               </Badge>
@@ -190,7 +190,7 @@ function TeammateCard({ teammate }: { teammate: AITeammate }) {
 
       <div className="pt-4 border-t border-border flex items-center justify-between">
         <p className="text-sm">
-          <span className="font-semibold text-primary">{teammate.metric}</span>
+          <span className="font-semibold text-primary">{employee.metric}</span>
         </p>
         <Button size="sm" variant="ghost" className="text-primary">
           Learn more
@@ -218,7 +218,7 @@ const Marketplace = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              AI Teammates That Work{" "}
+              AI Employees That Work{" "}
               <span className="text-gradient">Inside Human Workflows</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -248,7 +248,7 @@ const Marketplace = () => {
         </div>
       </section>
 
-      {/* Teammates Grid */}
+      {/* Employees Grid */}
       <section className="py-24">
         <div className="container mx-auto px-6">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
@@ -264,8 +264,8 @@ const Marketplace = () => {
             {Object.entries(departmentData).map(([key, data]) => (
               <TabsContent key={key} value={key}>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {data.teammates.map((teammate) => (
-                    <TeammateCard key={teammate.id} teammate={teammate} />
+                  {data.employees.map((employee) => (
+                    <EmployeeCard key={employee.id} employee={employee} />
                   ))}
                 </div>
               </TabsContent>
@@ -284,10 +284,10 @@ const Marketplace = () => {
             className="max-w-2xl mx-auto text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to meet your new teammates?
+              Ready to meet your new AI employees?
             </h2>
             <p className="text-muted-foreground mb-8">
-              Start with a free workspace. Add AI teammates when you're ready.
+              Start with a free workspace. Add AI employees when you're ready.
             </p>
             <Button size="lg" className="shadow-elevated hover:shadow-glow transition-shadow">
               Create Free Workspace

@@ -3,7 +3,7 @@ import logo from "@/assets/logo.png";
 
 const footerLinks = {
   Product: [
-    { label: "AI Teammates", href: "/marketplace" },
+    { label: "AI Employees", href: "/marketplace" },
     { label: "Pricing", href: "/pricing" },
     { label: "Security", href: "#" },
     { label: "Enterprise", href: "#" },
