@@ -2,218 +2,28 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  TrendingUp,
-  Megaphone,
-  UserPlus,
-  CheckCircle,
-  Shield,
-  MessageSquare,
-  FileBarChart,
-  Search,
-  Mail,
-  Database,
-  PenTool,
-  BarChart3,
-  Eye,
-  Users,
-  FileText,
-  Calendar,
-  Headphones,
-  Share2,
-  AtSign
-} from "lucide-react";
-
-interface AITeammate {
-  id: string;
-  name: string;
-  role: string;
-  icon: React.ElementType;
-  valueSentence: string;
-  autonomous: string[];
-  needsApproval: string[];
-  metric: string;
-}
-
-const salesTeammates: AITeammate[] = [
-  {
-    id: "data-revops-specialist",
-    name: "Data & RevOps Specialist",
-    role: "Sales Data & Operations",
-    icon: Database,
-    valueSentence: "Keeps your CRM accurate and insights flowing.",
-    autonomous: ["Contact enrichment", "CRM hygiene", "Revenue insights"],
-    needsApproval: ["Data deletions", "Forecast adjustments"],
-    metric: "99% data accuracy",
-  },
-  {
-    id: "sales-coach",
-    name: "Sales Coach",
-    role: "Performance & Training",
-    icon: Headphones,
-    valueSentence: "Turns every call into a coaching opportunity.",
-    autonomous: ["Call analysis", "Coaching suggestions", "Skill tracking"],
-    needsApproval: ["Training assignments", "Performance reviews"],
-    metric: "23% quota improvement",
-  },
-  {
-    id: "outreach-specialist",
-    name: "Outreach Specialist",
-    role: "Prospecting & Engagement",
-    icon: Mail,
-    valueSentence: "Drafts personalized outreach that gets replies.",
-    autonomous: ["Email drafting", "Lead scoring", "Sequence management"],
-    needsApproval: ["Sending messages", "Template changes"],
-    metric: "3x reply rates",
-  },
-];
-
-const marketingTeammates: AITeammate[] = [
-  {
-    id: "social-media-manager",
-    name: "Social Media Manager",
-    role: "Social Presence & Engagement",
-    icon: Share2,
-    valueSentence: "Keeps your social presence active and engaging.",
-    autonomous: ["Post creation", "Engagement monitoring", "Trend analysis"],
-    needsApproval: ["Publishing posts", "Brand messaging"],
-    metric: "2x engagement rate",
-  },
-  {
-    id: "email-campaign-manager",
-    name: "Email Campaign Manager",
-    role: "Email Marketing",
-    icon: AtSign,
-    valueSentence: "Designs campaigns that reach the right people.",
-    autonomous: ["Campaign design", "Audience segmentation", "Performance analysis"],
-    needsApproval: ["Sending campaigns", "List changes"],
-    metric: "35% open rate improvement",
-  },
-  {
-    id: "content-writer",
-    name: "Content Writer",
-    role: "Content Creation",
-    icon: PenTool,
-    valueSentence: "Creates SEO-optimized content in your brand voice.",
-    autonomous: ["Content drafting", "SEO optimization", "Brand consistency"],
-    needsApproval: ["Publishing", "Topic selection"],
-    metric: "40% faster production",
-  },
-];
-
-const recruitmentTeammates: AITeammate[] = [
-  {
-    id: "talent-sourcing-specialist",
-    name: "Talent Sourcing Specialist",
-    role: "Candidate Discovery",
-    icon: Users,
-    valueSentence: "Finds qualified candidates before you ask.",
-    autonomous: ["Candidate sourcing", "Fit scoring", "Profile enrichment"],
-    needsApproval: ["Outreach messages", "Adding to pipeline"],
-    metric: "5x candidate volume",
-  },
-  {
-    id: "screening-specialist",
-    name: "Screening Specialist",
-    role: "Initial Assessment",
-    icon: FileText,
-    valueSentence: "Handles first screens so you focus on finals.",
-    autonomous: ["Initial screens", "Response evaluation", "Interview scheduling"],
-    needsApproval: ["Advancing candidates", "Rejection decisions"],
-    metric: "80% time saved",
-  },
-];
+import { TrendingUp, Megaphone, UserPlus, MessageSquare, Shield, FileBarChart } from "lucide-react";
+import { employees } from "@/data/employees";
+import { TeammateCard } from "@/components/marketplace/TeammateCard";
 
 const departmentData = {
-  sales: { teammates: salesTeammates, icon: TrendingUp, label: "Sales & RevOps" },
-  marketing: { teammates: marketingTeammates, icon: Megaphone, label: "Marketing" },
-  recruitment: { teammates: recruitmentTeammates, icon: UserPlus, label: "Recruitment" },
+  sales: { 
+    employees: employees.filter(e => e.department === "sales"),
+    icon: TrendingUp, 
+    label: "Sales & RevOps" 
+  },
+  marketing: { 
+    employees: employees.filter(e => e.department === "marketing"),
+    icon: Megaphone, 
+    label: "Marketing" 
+  },
+  recruitment: { 
+    employees: employees.filter(e => e.department === "recruitment"),
+    icon: UserPlus, 
+    label: "Recruitment" 
+  },
 };
-
-function TeammateCard({ teammate }: { teammate: AITeammate }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-card rounded-2xl p-6 border border-border shadow-soft hover-card hover:border-primary/20 group cursor-pointer"
-    >
-      {/* Header */}
-      <div className="flex items-start gap-4 mb-3">
-        <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center group-hover:shadow-glow transition-shadow shrink-0">
-          <teammate.icon className="w-6 h-6 text-primary-foreground" />
-        </div>
-        <div>
-          <h3 className="font-semibold text-lg">{teammate.name}</h3>
-          <p className="text-sm text-muted-foreground">{teammate.role}</p>
-        </div>
-      </div>
-
-      {/* Value sentence */}
-      <p className="text-sm text-muted-foreground mb-4">{teammate.valueSentence}</p>
-
-      {/* Capability chips (collapsed view) */}
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {teammate.autonomous.map((item) => (
-          <Badge key={item} variant="secondary" className="text-xs">
-            {item}
-          </Badge>
-        ))}
-      </div>
-
-      {/* Expanded content */}
-      {isExpanded && (
-        <div className="space-y-4 mb-4 pt-4 border-t border-border">
-          <div>
-            <div className="flex items-center gap-2 text-sm font-medium mb-2">
-              <CheckCircle className="w-4 h-4 text-primary" />
-              <span>Works autonomously</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {teammate.autonomous.map((item) => (
-                <Badge key={item} variant="secondary" className="text-xs">
-                  {item}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center gap-2 text-sm font-medium mb-2">
-              <Shield className="w-4 h-4 text-muted-foreground" />
-              <span>Requires approval</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {teammate.needsApproval.map((item) => (
-                <Badge key={item} variant="outline" className="text-xs">
-                  {item}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Footer */}
-      <div className="pt-4 border-t border-border flex items-center justify-between">
-        <p className="text-sm">
-          <span className="font-semibold text-primary">{teammate.metric}</span>
-        </p>
-        <Button
-          size="sm"
-          variant="ghost"
-          className="text-primary text-xs"
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
-          {isExpanded ? "Show less" : "Learn more"}
-        </Button>
-      </div>
-    </motion.div>
-  );
-}
 
 const Marketplace = () => {
   const [activeTab, setActiveTab] = useState("sales");
@@ -263,7 +73,7 @@ const Marketplace = () => {
         </div>
       </section>
 
-      {/* Teammates Grid */}
+      {/* Employees Grid */}
       <section className="py-24">
         <div className="container mx-auto px-6">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
@@ -279,8 +89,8 @@ const Marketplace = () => {
             {Object.entries(departmentData).map(([key, data]) => (
               <TabsContent key={key} value={key}>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {data.teammates.map((teammate) => (
-                    <TeammateCard key={teammate.id} teammate={teammate} />
+                  {data.employees.map((employee) => (
+                    <TeammateCard key={employee.id} employee={employee} />
                   ))}
                 </div>
               </TabsContent>
