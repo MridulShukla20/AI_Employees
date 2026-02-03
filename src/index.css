@@ -3,65 +3,81 @@
 @tailwind utilities;
 
 /* PrimeRole Design System - Human + AI Collaboration Platform
-   Style: Modern, minimal, enterprise-grade
-   Inspiration: Linear.app, Notion.so, Stripe.com
+   Style: "Future of Work" - Professional SaaS with friendly AI personality
+   New brand: Purple primary, indigo dark, amber accent
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Brand Colors - Purple from logo */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 10%;
+    /* New Brand Colors */
+    --purple-primary: 263 70% 50%;
+    --purple-dark: 263 61% 51%;
+    --purple-light: 263 89% 78%;
+    --indigo-dark: 248 47% 20%;
+    --amber: 38 92% 50%;
+    --green: 160 84% 39%;
+    
+    /* Core semantic colors */
+    --background: 230 100% 99%;
+    --foreground: 248 47% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card-foreground: 248 47% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
+    --popover-foreground: 248 47% 20%;
 
-    /* Primary - Brand Purple */
-    --primary: 262 83% 58%;
+    /* Primary - Brand Purple #7C3AED */
+    --primary: 263 70% 50%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary - Soft purple tint */
-    --secondary: 262 30% 96%;
-    --secondary-foreground: 262 83% 40%;
+    --secondary: 263 30% 96%;
+    --secondary-foreground: 263 70% 40%;
 
     /* Muted - Gentle grays */
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 5% 45%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    /* Accent - Light purple glow */
-    --accent: 262 60% 95%;
-    --accent-foreground: 262 83% 45%;
+    /* Accent - Amber for highlights */
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 262 83% 58%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 263 70% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     /* Custom tokens for PrimeRole */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(280 70% 50%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(262 30% 98%) 0%, hsl(0 0% 100%) 100%);
-    --shadow-soft: 0 2px 8px -2px hsl(262 30% 20% / 0.08);
-    --shadow-elevated: 0 8px 32px -8px hsl(262 30% 20% / 0.12);
-    --shadow-glow: 0 0 40px -10px hsl(262 83% 58% / 0.3);
+    --gradient-hero: linear-gradient(135deg, hsl(263 70% 50%) 0%, hsl(322 80% 55%) 100%);
+    --gradient-hero-bg: linear-gradient(135deg, hsl(263 70% 50% / 0.1) 0%, hsl(190 80% 50% / 0.1) 50%, hsl(280 80% 60% / 0.1) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%) 0%, hsl(263 61% 45%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(230 100% 99%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(248 47% 20%) 0%, hsl(263 70% 30%) 100%);
+    --gradient-amber: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(25 95% 53%) 100%);
+    --shadow-soft: 0 2px 8px -2px hsl(248 30% 20% / 0.08);
+    --shadow-elevated: 0 8px 32px -8px hsl(248 30% 20% / 0.12);
+    --shadow-glow: 0 0 40px -10px hsl(263 70% 50% / 0.3);
+    --shadow-purple-glow: 0 8px 32px hsl(263 70% 50% / 0.25);
+    --shadow-amber-glow: 0 8px 32px hsl(38 92% 50% / 0.25);
+    --shadow-green-glow: 0 8px 32px hsl(160 84% 39% / 0.25);
 
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5% 26%;
-    --sidebar-primary: 262 83% 58%;
+    --sidebar-foreground: 220 14% 26%;
+    --sidebar-primary: 263 70% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 262 30% 96%;
-    --sidebar-accent-foreground: 262 83% 40%;
-    --sidebar-border: 240 6% 90%;
-    --sidebar-ring: 262 83% 58%;
+    --sidebar-accent: 263 30% 96%;
+    --sidebar-accent-foreground: 263 70% 40%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 263 70% 50%;
   }
 
   .dark {
@@ -74,33 +90,33 @@
     --popover: 240 10% 8%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 262 83% 65%;
+    --primary: 263 70% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 262 30% 15%;
-    --secondary-foreground: 262 60% 80%;
+    --secondary: 263 30% 15%;
+    --secondary-foreground: 263 60% 80%;
 
     --muted: 240 5% 15%;
     --muted-foreground: 240 5% 60%;
 
-    --accent: 262 40% 20%;
-    --accent-foreground: 262 60% 80%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 240 5% 18%;
     --input: 240 5% 18%;
-    --ring: 262 83% 65%;
+    --ring: 263 70% 60%;
 
     --sidebar-background: 240 10% 6%;
     --sidebar-foreground: 240 5% 80%;
-    --sidebar-primary: 262 83% 65%;
+    --sidebar-primary: 263 70% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 262 30% 15%;
-    --sidebar-accent-foreground: 262 60% 80%;
+    --sidebar-accent: 263 30% 15%;
+    --sidebar-accent-foreground: 263 60% 80%;
     --sidebar-border: 240 5% 18%;
-    --sidebar-ring: 262 83% 65%;
+    --sidebar-ring: 263 70% 60%;
   }
 }
 
@@ -110,22 +126,43 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground;
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+    @apply font-bold tracking-tight text-foreground;
   }
 }
 
 @layer utilities {
+  .font-display {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-hero-bg {
+    background: var(--gradient-hero-bg);
+  }
+
   .gradient-primary {
     background: var(--gradient-primary);
   }
 
   .gradient-subtle {
     background: var(--gradient-subtle);
+  }
+
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .gradient-amber {
+    background: var(--gradient-amber);
   }
 
   .shadow-soft {
@@ -140,56 +177,157 @@
     box-shadow: var(--shadow-glow);
   }
 
+  .shadow-purple-glow {
+    box-shadow: var(--shadow-purple-glow);
+  }
+
+  .shadow-amber-glow {
+    box-shadow: var(--shadow-amber-glow);
+  }
+
+  .shadow-green-glow {
+    box-shadow: var(--shadow-green-glow);
+  }
+
   .text-gradient {
-    background: var(--gradient-primary);
+    background: var(--gradient-hero);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  .text-gradient-amber {
+    background: var(--gradient-amber);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated gradient background */
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  /* Float animation for cards */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 3s ease-in-out infinite 1s;
+  }
+
+  .animate-float-delayed-2 {
+    animation: float 3s ease-in-out infinite 2s;
+  }
+
+  /* Glow pulse animation */
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px hsl(263 70% 50% / 0.2); }
+    50% { box-shadow: 0 0 40px hsl(263 70% 50% / 0.4); }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  /* Scroll indicator bounce */
+  @keyframes bounce-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  .animate-bounce-soft {
+    animation: bounce-soft 2s ease-in-out infinite;
+  }
+
+  /* Sparkle animation */
+  @keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  .animate-sparkle {
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+
   /* Interactive hover states */
-  .hover-card {
-    transition: box-shadow 200ms ease-out, transform 200ms ease-out, border-color 200ms ease-out;
+  .hover-lift {
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .hover-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -15px hsl(248 30% 20% / 0.15);
   }
 
-  .hover-pill {
-    transition: background-color 150ms ease-out;
+  .hover-scale {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .hover-pill:hover {
-    background-color: hsl(262 83% 58% / 0.08);
+  .hover-scale:hover {
+    transform: scale(1.02);
   }
 
   /* Focus states for accessibility */
   .focus-ring:focus-visible {
-    outline: 2px solid hsl(262 83% 58% / 0.4);
+    outline: 2px solid hsl(263 70% 50% / 0.4);
     outline-offset: 2px;
   }
 
-  /* Pulse animation for CTA buttons */
-  @keyframes pulse-once {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02); }
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
   }
 
-  .animate-pulse-once {
-    animation: pulse-once 300ms ease-out 2s 1;
+  /* Grid pattern background */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(263 70% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(263 70% 50% / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  /* Smooth expand/collapse for progressive disclosure */
-  .expand-transition {
-    transition: max-height 250ms ease-out, opacity 250ms ease-out;
-    overflow: hidden;
+  /* Backdrop blur with fallback */
+  .glass {
+    background: hsl(0 0% 100% / 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   /* Number transitions for price updates */
   .tabular-nums {
     font-variant-numeric: tabular-nums;
   }
-}
 
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
