@@ -1,21 +1,23 @@
-import { Layout } from "@/components/layout/Layout";
-import { HeroSection } from "@/components/home/HeroSection";
-import { WorkflowSection } from "@/components/home/WorkflowSection";
-import { ComparisonSection } from "@/components/home/ComparisonSection";
-import { TrustSection } from "@/components/home/TrustSection";
-import { AITeammatesSection } from "@/components/home/AITeammatesSection";
-import { CTASection } from "@/components/home/CTASection";
+import { NewLayout } from "@/components/layout/NewLayout";
+import { NewHeroSection } from "@/components/home/NewHeroSection";
+import { NewHowItWorksSection } from "@/components/home/NewHowItWorksSection";
+import { NewAIRosterSection } from "@/components/home/NewAIRosterSection";
+import { NewApprovalSection } from "@/components/home/NewApprovalSection";
+import { NewPricingSection } from "@/components/home/NewPricingSection";
+import { NewTestimonialsSection } from "@/components/home/NewTestimonialsSection";
+import { NewFinalCTASection } from "@/components/home/NewFinalCTASection";
 
 const Index = () => {
   return (
-    <Layout>
-      <HeroSection />
-      <WorkflowSection />
-      <ComparisonSection />
-      <TrustSection />
-      <AITeammatesSection />
-      <CTASection />
-    </Layout>
+    <NewLayout>
+      <NewHeroSection />
+      <NewHowItWorksSection />
+      <NewAIRosterSection />
+      <NewApprovalSection />
+      <NewPricingSection />
+      <NewTestimonialsSection />
+      <NewFinalCTASection />
+    </NewLayout>
   );
 };
 
