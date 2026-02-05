@@ -309,7 +309,7 @@ const EmployeeDetail = () => {
                   </li>
                   <li className="flex items-center gap-3">
                     <Check className="w-5 h-5 text-primary" />
-                    <span className="text-sm">Unlimited human seats—free</span>
+                    <span className="text-sm">Unlimited human seats. Free</span>
                   </li>
                 </ul>
 

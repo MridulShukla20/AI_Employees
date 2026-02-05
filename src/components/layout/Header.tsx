@@ -5,15 +5,12 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/marketplace", label: "AI Employees" },
-  { href: "/pricing", label: "Pricing" },
-];
-
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+
+  // Check if current path is under /ai-employees
+  const isAIEmployeesActive = location.pathname.startsWith("/ai-employees");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
@@ -26,18 +23,30 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === link.href
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                  }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === "/" ? "text-primary" : "text-muted-foreground"
+                }`}
+            >
+              Home
+            </Link>
+
+            {/* AI Employees - Direct link */}
+            <Link
+              to="/ai-employees"
+              className={`text-sm font-medium transition-colors hover:text-primary ${isAIEmployeesActive ? "text-primary" : "text-muted-foreground"
+                }`}
+            >
+              AI Employees
+            </Link>
+
+            <Link
+              to="/pricing"
+              className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === "/pricing" ? "text-primary" : "text-muted-foreground"
+                }`}
+            >
+              Pricing
+            </Link>
           </nav>
 
           {/* CTA Buttons */}
@@ -68,19 +77,34 @@ export function Header() {
             className="md:hidden bg-background border-b border-border"
           >
             <nav className="container mx-auto px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === link.href
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                    }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              <Link
+                to="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === "/" ? "text-primary" : "text-muted-foreground"
+                  }`}
+              >
+                Home
+              </Link>
+
+              {/* AI Employees - Direct link */}
+              <Link
+                to="/ai-employees"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-sm font-medium transition-colors hover:text-primary ${isAIEmployeesActive ? "text-primary" : "text-muted-foreground"
+                  }`}
+              >
+                AI Employees
+              </Link>
+
+              <Link
+                to="/pricing"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === "/pricing" ? "text-primary" : "text-muted-foreground"
+                  }`}
+              >
+                Pricing
+              </Link>
+
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
                 <Button variant="ghost" size="sm" className="justify-start">
                   Sign In

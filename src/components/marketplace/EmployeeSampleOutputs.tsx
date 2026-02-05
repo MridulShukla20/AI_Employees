@@ -210,12 +210,12 @@ const sampleOutputContent: Record<string, { tab1: React.ReactNode; tab2: React.R
       <div className="space-y-4">
         <div className="border-b pb-3">
           <p className="text-xs text-muted-foreground mb-1">To: jennifer.martinez@techstart.io</p>
-          <p className="font-semibold">Congrats on the Series B—quick question about your data pipeline</p>
+          <p className="font-semibold">Congrats on the Series B. Quick question about your data pipeline</p>
         </div>
         <div className="text-sm space-y-3">
           <p>Hi Jennifer,</p>
           <p>Congratulations on TechStart's Series B! $24M is a strong signal that your engineering velocity is paying off.</p>
-          <p>I noticed you're scaling the data team—we helped Acme Corp cut their pipeline build time by 60% after a similar growth phase.</p>
+          <p>I noticed you're scaling the data team. We helped Acme Corp cut their pipeline build time by 60% after a similar growth phase.</p>
           <p>Worth a 15-min chat to see if we could help TechStart move faster too?</p>
           <p>Best,<br/>Alex</p>
         </div>
@@ -230,7 +230,7 @@ const sampleOutputContent: Record<string, { tab1: React.ReactNode; tab2: React.R
         <h4 className="font-semibold">5-Touch Outreach Sequence</h4>
         <div className="space-y-3">
           {[
-            { day: "Day 1", type: "Email", subject: "Congrats on the Series B—quick question" },
+            { day: "Day 1", type: "Email", subject: "Congrats on the Series B. Quick question" },
             { day: "Day 3", type: "LinkedIn", subject: "Connection request + comment on post" },
             { day: "Day 6", type: "Email", subject: "Quick case study from similar company" },
             { day: "Day 10", type: "Email", subject: "One specific idea for TechStart" },
@@ -252,7 +252,7 @@ const sampleOutputContent: Record<string, { tab1: React.ReactNode; tab2: React.R
           <Badge className="bg-green-100 text-green-800">Positive</Badge>
         </div>
         <div className="bg-muted/50 rounded-lg p-4 text-sm">
-          <p className="italic">"Thanks for reaching out! The timing is actually good—we're evaluating options this quarter. Can you send over some more details about the Acme case study?"</p>
+          <p className="italic">"Thanks for reaching out! The timing is actually good. We're evaluating options this quarter. Can you send over some more details about the Acme case study?"</p>
         </div>
         <div className="space-y-2">
           <p className="text-sm"><span className="font-medium">Intent:</span> Interest + Info Request</p>
@@ -430,11 +430,11 @@ const sampleOutputContent: Record<string, { tab1: React.ReactNode; tab2: React.R
         </div>
         <div>
           <p className="text-sm font-medium mb-2">Suggested Angle</p>
-          <p className="text-sm text-muted-foreground">Share your "humans + AI" philosophy—differentiate from "AI replacing workers" narrative.</p>
+          <p className="text-sm text-muted-foreground">Share your "humans + AI" philosophy. Differentiate from "AI replacing workers" narrative.</p>
         </div>
         <div className="border-t pt-3">
           <p className="text-sm font-medium mb-2">Draft Post</p>
-          <p className="text-sm italic text-muted-foreground">"The best AI tools don't replace your team—they make your team more effective. Here's how we think about humans + AI at PrimeRole..."</p>
+          <p className="text-sm italic text-muted-foreground">"The best AI tools don't replace your team. They make your team more effective. Here's how we think about humans + AI at PrimeRole..."</p>
         </div>
       </div>
     ),
@@ -657,9 +657,9 @@ const sampleOutputContent: Record<string, { tab1: React.ReactNode; tab2: React.R
         <h4 className="font-semibold">Outreach Message</h4>
         <div className="border rounded-lg p-4 text-sm space-y-3">
           <p>Hi Alex,</p>
-          <p>Your work on Stripe's payment infrastructure caught my attention—especially the latency improvements you shipped last year.</p>
+          <p>Your work on Stripe's payment infrastructure caught my attention, especially the latency improvements you shipped last year.</p>
           <p>I'm reaching out about a Staff Engineer role at PrimeRole. We're building the collaboration layer between humans and AI, and your systems background would be incredibly valuable.</p>
-          <p>Would you be open to a quick chat? No pressure—happy to share more about what we're building either way.</p>
+          <p>Would you be open to a quick chat? No pressure. Happy to share more about what we're building either way.</p>
           <p>Best,<br/>Priya (on behalf of the PrimeRole team)</p>
         </div>
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
@@ -753,7 +753,7 @@ const sampleOutputContent: Record<string, { tab1: React.ReactNode; tab2: React.R
             <p className="text-sm font-medium mb-1">Strengths</p>
             <p className="text-sm text-muted-foreground">8 years at top-tier companies, shipped payment infra at scale</p>
             <p className="text-sm font-medium mb-1 mt-2">Considerations</p>
-            <p className="text-sm text-muted-foreground">No startup experience—may need adjustment period</p>
+            <p className="text-sm text-muted-foreground">No startup experience. May need adjustment period</p>
           </div>
         </div>
       </div>

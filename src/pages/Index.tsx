@@ -1,21 +1,30 @@
-import { Layout } from "@/components/layout/Layout";
-import { HeroSection } from "@/components/home/HeroSection";
-import { WorkflowSection } from "@/components/home/WorkflowSection";
-import { ComparisonSection } from "@/components/home/ComparisonSection";
-import { TrustSection } from "@/components/home/TrustSection";
-import { AITeammatesSection } from "@/components/home/AITeammatesSection";
-import { CTASection } from "@/components/home/CTASection";
+import { HeroSectionV3 } from "@/components/home/HeroSectionV3";
+
+import { DepartmentCapabilitiesSection } from "@/components/home/DepartmentCapabilitiesSection";
+import { MobileFirstSection } from "@/components/home/MobileFirstSection";
+import { AIRosterSection } from "@/components/home/AIRosterSection";
+import { PricingSectionV3 } from "@/components/home/PricingSectionV3";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { FinalCTASection } from "@/components/home/FinalCTASection";
+import { FooterV3 } from "@/components/home/FooterV3";
+import { HeaderV3 } from "@/components/home/HeaderV3";
 
 const Index = () => {
   return (
-    <Layout>
-      <HeroSection />
-      <WorkflowSection />
-      <ComparisonSection />
-      <TrustSection />
-      <AITeammatesSection />
-      <CTASection />
-    </Layout>
+    <div className="min-h-screen bg-white">
+      <HeaderV3 />
+      <main>
+        <HeroSectionV3 />
+
+        <DepartmentCapabilitiesSection />
+        <AIRosterSection />
+        <MobileFirstSection />
+        <PricingSectionV3 />
+        <TestimonialsSection />
+        <FinalCTASection />
+      </main>
+      <FooterV3 />
+    </div>
   );
 };
 
