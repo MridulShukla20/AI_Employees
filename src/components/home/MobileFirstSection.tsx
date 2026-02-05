@@ -83,7 +83,7 @@ const PhoneMockup = () => {
                                 <span className="text-[17px] text-slate-500">Search</span>
                             </div>
 
-                            <div className="flex-1 overflow-visible">
+                            <div className="flex-1 overflow-hidden relative">
                                 <div className="text-[13px] font-semibold text-slate-400 uppercase mb-2 ml-1">Today</div>
 
                                 {/* List Container */}
@@ -278,7 +278,7 @@ const PhoneMockup = () => {
     };
 
     return (
-        <div className="relative mx-auto w-[370px] h-[750px] group perspective-[1200px]">
+        <div className="relative mx-auto w-[370px] h-[750px] group perspective-[1200px] transform scale-[0.85] sm:scale-100 origin-center">
             {/* iPhone 14 Pro Max Body */}
             <div className="relative w-full h-full bg-[#1c1c1e] rounded-[68px] shadow-[0_0_0_2px_#3a3a3c,0_0_0_6px_#121212,0_30px_60px_rgba(0,0,0,0.4),inset_0_0_40px_rgba(0,0,0,0.5)] overflow-hidden ring-1 ring-white/10 transition-transform duration-500 group-hover:rotate-y-[-2deg] group-hover:rotate-x-[2deg]">
 
@@ -286,7 +286,7 @@ const PhoneMockup = () => {
                 <div className="absolute inset-0 rounded-[68px] bg-gradient-to-tr from-[#333] via-[#111] to-[#222] opacity-80 pointer-events-none" />
 
                 {/* Screen Container */}
-                <div className="absolute top-[10px] left-[10px] right-[10px] bottom-[10px] bg-black rounded-[58px] overflow-hidden border-[4px] border-black z-10">
+                <div className="absolute top-[10px] left-[10px] right-[10px] bottom-[10px] bg-black rounded-[58px] overflow-hidden border-[4px] border-black z-10" style={{ WebkitMaskImage: "linear-gradient(to bottom, black, black)", maskImage: "linear-gradient(to bottom, black, black)" }}>
                     <PhoneScreen />
 
                     {/* Screen Reflection Gradient */}
