@@ -163,8 +163,8 @@ export function HowItWorksSection() {
 
                             <div className="flex items-center justify-between text-sm pt-6 mt-4 border-t border-slate-100">
                                 <span className="text-slate-500 font-medium">→ All submit to your queue</span>
-                                <Button size="sm" variant="outline" className="h-9 px-4 text-xs font-semibold border-slate-200 text-slate-700 hover:text-purple-600 hover:border-purple-200">
-                                    Review Queue (15 items) <ArrowRight className="ml-1.5 w-3 h-3" />
+                                <Button className="inline-flex items-center gap-2 !bg-[#7C3AED] hover:!bg-[#6D28D9] !text-white !text-[15px] !font-semibold !px-6 !py-3 !rounded-[10px] !border-0 !shadow-[0_4px_12px_rgba(124,58,237,0.3)] hover:!shadow-[0_6px_16px_rgba(124,58,237,0.4)] hover:!-translate-y-[2px] transition-all duration-200 ease-in-out h-auto">
+                                    Review Queue (15 items) <ArrowRight className="w-4 h-4" />
                                 </Button>
                             </div>
                         </motion.div>
@@ -182,23 +182,23 @@ export function HowItWorksSection() {
                             </div>
 
                             <div className="flex items-center justify-between mb-6 relative z-10">
-                                <div className="inline-block px-3 py-1 rounded bg-blue-500/20 border border-blue-500/30 text-blue-200 text-[10px] font-bold uppercase tracking-wider">
+                                <div className="inline-block px-3 py-1 rounded bg-white/15 border border-white/20 text-white text-[10px] font-bold uppercase tracking-wider">
                                     3. Track Individual Performance
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4 mb-6 relative z-10">
                                 <div>
-                                    <div className="text-[11px] text-slate-400 uppercase font-bold tracking-wider mb-1">Total Tasks</div>
+                                    <div className="text-[11px] text-white/70 uppercase font-bold tracking-wider mb-1">Total Tasks</div>
                                     <div className="text-xl font-bold text-white">198 completed</div>
                                 </div>
                                 <div>
-                                    <div className="text-[11px] text-slate-400 uppercase font-bold tracking-wider mb-1">Time Saved</div>
-                                    <div className="text-xl font-bold text-purple-300">12.3 hours</div>
+                                    <div className="text-[11px] text-white/70 uppercase font-bold tracking-wider mb-1">Time Saved</div>
+                                    <div className="text-xl font-bold text-white">12.3 hours</div>
                                 </div>
                             </div>
 
-                            <div className="mb-2 text-[11px] text-slate-400 font-bold uppercase tracking-wider relative z-10">Employee Report Cards:</div>
+                            <div className="mb-2 text-[11px] text-white/80 font-bold uppercase tracking-wider relative z-10">Employee Report Cards:</div>
 
                             <div className="grid grid-cols-3 gap-2 mb-6 relative z-10">
                                 {[
@@ -210,7 +210,7 @@ export function HowItWorksSection() {
                                     { name: "Lena", rating: "4.9" },
                                 ].map((emp, i) => (
                                     <div key={i} className="bg-white/10 rounded px-2 py-1.5 flex items-center justify-between border border-white/5 hover:bg-white/20 transition-colors cursor-pointer">
-                                        <span className="text-xs font-medium text-slate-200">{emp.name}</span>
+                                        <span className="text-xs font-semibold text-white">{emp.name}</span>
                                         <div className="flex items-center gap-0.5">
                                             <Star className="w-2.5 h-2.5 text-yellow-400 fill-yellow-400" />
                                             <span className="text-[10px] font-bold text-white">{emp.rating}</span>
@@ -219,8 +219,8 @@ export function HowItWorksSection() {
                                 ))}
                             </div>
 
-                            <Button variant="outline" className="w-full border-white/20 text-slate-200 hover:bg-white/10 hover:text-white bg-transparent h-9 text-xs font-semibold relative z-10">
-                                View All Report Cards <ArrowRight className="ml-2 w-3 h-3" />
+                            <Button className="inline-flex items-center gap-2 !bg-white hover:!bg-slate-100 !text-[#1E293B] !text-[15px] !font-semibold !px-6 !py-3 !rounded-lg !border-0 !shadow-lg hover:!shadow-xl hover:!-translate-y-[1px] transition-all duration-200 ease-in-out h-auto relative z-10 w-auto">
+                                View Report Cards <ArrowRight className="w-4 h-4" />
                             </Button>
                         </motion.div>
                     </div>

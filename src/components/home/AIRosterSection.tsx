@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrendingUp, Megaphone, Users, CheckCircle, Database, Headphones, Mail } from "lucide-react";
+import { TrendingUp, Megaphone, Users, CheckCircle, Database, Headphones, Mail, FileText } from "lucide-react";
 
 type Department = 'sales' | 'marketing' | 'recruiting';
 
@@ -52,15 +52,15 @@ const roster: Employee[] = [
         departments: ['sales', 'recruiting']
     },
     {
-        name: "Sofia",
-        role: "Deal Advisor",
-        description: "Your always-on deal desk analyst. Catches risks early.",
-        tag: "Needs: CRM",
-        metric: "Catches risks early",
-        icon: TrendingUp,
-        color: "text-blue-600",
-        bg: "bg-blue-100",
-        departments: ['sales']
+        name: "Sana",
+        role: "Content Writer",
+        description: "Writes blogs, case studies, and newsletters optimized for SEO.",
+        tag: "Brand voice + topics",
+        metric: "SEO-optimized content",
+        icon: FileText,
+        color: "text-pink-600",
+        bg: "bg-pink-100",
+        departments: ['marketing']
     },
     {
         name: "Zara",
@@ -209,8 +209,8 @@ export function AIRosterSection() {
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === tab.id
-                                        ? "bg-slate-900 text-white shadow-md"
-                                        : "text-slate-500 hover:text-slate-900 hover:bg-gray-50"
+                                    ? "bg-slate-900 text-white shadow-md"
+                                    : "text-slate-500 hover:text-slate-900 hover:bg-gray-50"
                                     }`}
                             >
                                 {tab.label}

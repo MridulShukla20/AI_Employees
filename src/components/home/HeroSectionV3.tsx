@@ -111,7 +111,7 @@ export function HeroSectionV3() {
                         <Button size="lg" className="button-primary w-full sm:w-auto text-[17px] px-10 py-7 h-auto">
                             Start Free <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
-                        <Button size="lg" className="button-secondary w-full sm:w-auto text-[17px] px-10 py-7 h-auto">
+                        <Button size="lg" className="button-secondary w-full sm:w-auto text-[17px] px-10 py-7 h-auto !text-slate-900 !font-bold !bg-white !border-2 !border-slate-200 hover:!border-purple-600 hover:!bg-white hover:!text-slate-900 hover:!-translate-y-[1px] hover:!shadow-[0_4px_12px_rgba(124,58,237,0.15)] active:!translate-y-0 active:!shadow-sm focus-visible:!ring-2 focus-visible:!ring-purple-600 focus-visible:!ring-offset-2 motion-reduce:!transform-none transition-all duration-200">
                             See the AI Team
                         </Button>
                     </motion.div>
