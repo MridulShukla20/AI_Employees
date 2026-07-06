@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import AIEmployeesIndex from "./pages/AIEmployeesIndex";
 import AIEmployeeDetail from "./pages/AIEmployeeDetail";
 import Pricing from "./pages/Pricing";
+import HRBPConsole from "./pages/HRBPConsole";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/ai-employees" element={<AIEmployeesIndex />} />
           <Route path="/ai-employees/:id" element={<AIEmployeeDetail />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/hrbp" element={<HRBPConsole />} />
           {/* Backward compatibility redirects */}
           <Route path="/marketplace/:id" element={<MarketplaceRedirect />} />
           <Route path="/marketplace" element={<Navigate to="/ai-employees" replace />} />
