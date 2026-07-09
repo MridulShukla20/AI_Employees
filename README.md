@@ -50,6 +50,24 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
+## Run with Docker
+
+A production-ready Docker setup is included (multi-stage build: Node 20 compiles the Vite bundle, nginx serves it with SPA fallback for react-router).
+
+```sh
+# Build the image
+docker build -t mood-meter-bot .
+
+# Run the container (app available at http://localhost:8080)
+docker run -d --name mood-meter-bot -p 8080:80 --restart unless-stopped mood-meter-bot
+```
+
+Or with Docker Compose:
+
+```sh
+docker compose up -d --build
+```
+
 ## What technologies are used for this project?
 
 This project is built with:

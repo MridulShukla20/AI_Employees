@@ -1,0 +1,8 @@
+services:
+  mood-meter-bot:
+    build: .
+    image: mood-meter-bot:latest
+    container_name: mood-meter-bot
+    ports:
+      - "8080:80"
+    restart: unless-stopped
