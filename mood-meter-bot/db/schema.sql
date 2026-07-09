@@ -3,6 +3,11 @@
 -- Extends the original moodmeter.sql export with three columns the code in
 -- database.py/sync_keka.py depends on but the export predates:
 --   users.is_active, users.last_dm_sent_at, users.last_dm_msg_ts
+--
+-- Portable to both MariaDB and stock MySQL. When upgrading a pre-existing
+-- database that was created from the ORIGINAL moodmeter.sql (so the three
+-- extra columns are missing), also run the ALTER TABLE statements found in
+-- docker/entrypoint.sh (rewrite them without IF NOT EXISTS on stock MySQL).
 
 CREATE TABLE IF NOT EXISTS users (
     slack_user_id VARCHAR(50) PRIMARY KEY,
@@ -23,8 +28,3 @@ CREATE TABLE IF NOT EXISTS mood_logs (
     department_at_time VARCHAR(100) NOT NULL,
     FOREIGN KEY (slack_user_id) REFERENCES users(slack_user_id)
 );
-
--- Upgrade path for databases created from the original moodmeter.sql
-ALTER TABLE users ADD COLUMN IF NOT EXISTS is_active TINYINT(1) NOT NULL DEFAULT 1;
-ALTER TABLE users ADD COLUMN IF NOT EXISTS last_dm_sent_at DATETIME NULL DEFAULT NULL;
-ALTER TABLE users ADD COLUMN IF NOT EXISTS last_dm_msg_ts VARCHAR(50) NULL DEFAULT NULL;
