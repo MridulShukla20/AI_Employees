@@ -1,0 +1,15 @@
+# NEVER let secrets into the image or build context
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.pyc
+*.pyo
+.git
+.gitignore
+.vscode
+.idea
+*.md
+*.mwb
+docker-compose.yml

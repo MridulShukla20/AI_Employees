@@ -1,0 +1,14 @@
+services:
+  mood-meter-bot:
+    build: .
+    image: mood-meter-bot:latest
+    container_name: mood-meter-bot
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - mood_meter_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mood_meter_data:

@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+slack-sdk
+httpx
+pymysql
+cryptography
+python-dotenv
+requests
+apscheduler
+python-multipart
