@@ -1,4 +1,5 @@
 import pymysql
+import datetime
 from config import DB_CONFIG
 
 
@@ -87,12 +88,12 @@ def get_department_dashboard_metrics():
 
 
 def get_todays_detailed_moods():
-    """Fetches ONLY the latest mood log recorded today for each unique user."""
+    """Fetches ONLY the latest mood log recorded today for each unique user, including DM sent times."""
     connection = get_db_connection()
     
     with connection.cursor(pymysql.cursors.DictCursor) as cursor:
         sql = """
-        SELECT log_id, slack_user_id, employee_name, mood_selected, department_at_time, login_timestamp
+        SELECT log_id, slack_user_id, employee_name, mood_selected, department_at_time, login_timestamp, last_dm_sent_at
         FROM (
             SELECT 
                 m.log_id,
@@ -101,6 +102,7 @@ def get_todays_detailed_moods():
                 m.mood_selected,
                 m.department_at_time,
                 m.login_timestamp,
+                u.last_dm_sent_at,  -- Pulling the DM sent time from the users table
                 ROW_NUMBER() OVER (PARTITION BY m.slack_user_id ORDER BY m.login_timestamp DESC) AS rn
             FROM mood_logs m
             INNER JOIN users u ON m.slack_user_id = u.slack_user_id
@@ -145,7 +147,6 @@ def get_all_active_users():
         cursor.execute(sql)
         results = cursor.fetchall()
     connection.close()
-    # Flattens the list of tuples into a clean array of strings: ['U123', 'U456']
     return [row[0] for row in results] if results else []
 
 
@@ -170,7 +171,6 @@ def get_all_users_with_dm_tracking():
     """
     connection = get_db_connection()
     with connection.cursor(pymysql.cursors.DictCursor) as cursor:
-        # ➔ Added 'is_active' to selection and injected the WHERE clause filter
         sql = """
             SELECT slack_user_id, keka_department, last_dm_sent_at, last_dm_msg_ts 
             FROM users 
@@ -180,7 +180,6 @@ def get_all_users_with_dm_tracking():
         rows = cursor.fetchall()
     connection.close()
     return rows
-
 
 
 def get_employee_historical_mood(slack_userid: str, days: int):
@@ -215,6 +214,53 @@ def get_department_historical_mood(department_name: str, days: int):
         ORDER BY count DESC
         """
         cursor.execute(sql, (department_name, days))
+        rows = cursor.fetchall()
+    connection.close()
+    return rows
+
+
+def get_employee_range_mood(slack_userid, start_date, end_date):
+    """Fetches analytical historical mood distributions for a specific date range."""
+    connection = get_db_connection()
+    with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+        sql = """
+            SELECT 
+                mood_selected, 
+                COUNT(*) as count, 
+                ROUND(COUNT(*) * 100.0 / (
+                    SELECT COUNT(*) 
+                    FROM mood_logs 
+                    WHERE slack_user_id = %s AND DATE(login_timestamp) BETWEEN %s AND %s
+                ), 1) as percentage
+            FROM mood_logs 
+            WHERE slack_user_id = %s AND DATE(login_timestamp) BETWEEN %s AND %s
+            GROUP BY mood_selected
+            ORDER BY count DESC;
+        """
+        cursor.execute(sql, (slack_userid, start_date, end_date, slack_userid, start_date, end_date))
+        rows = cursor.fetchall()
+    connection.close()
+    return rows
+
+
+def get_continuous_negative_neutral_streaks_with_ids():
+    """
+    Scans mood logs from the past 3 days and pulls both names and Slack IDs 
+    for employees stuck in continuous neutral/negative cycles.
+    """
+    connection = get_db_connection()
+    with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+        # 🔗 FIX: Joined 'users' table (u) with 'mood_logs' (m) to access u.employee_name safely
+        sql = """
+            SELECT m.slack_user_id, u.employee_name
+            FROM mood_logs m
+            INNER JOIN users u ON m.slack_user_id = u.slack_user_id
+            WHERE m.login_timestamp >= NOW() - INTERVAL 3 DAY
+            GROUP BY m.slack_user_id, u.employee_name
+            HAVING COUNT(CASE WHEN m.mood_selected IN ('happy', 'excited', 'motivated') THEN 1 END) = 0
+               AND COUNT(*) >= 2;
+        """
+        cursor.execute(sql)
         rows = cursor.fetchall()
     connection.close()
     return rows

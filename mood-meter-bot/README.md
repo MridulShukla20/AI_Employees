@@ -44,6 +44,7 @@ reverse proxy on your server). Point your Slack app at:
 | `/my-history` slash command | `https://<public-host>/slack/my-history` |
 | `/mood-employee` slash command | `https://<public-host>/slack/mood-employee` |
 | `/mood-department` slash command | `https://<public-host>/slack/mood-department` |
+| `/mood-history-range` slash command | `https://<public-host>/slack/mood-history-range` |
 
 ## Using an external MySQL instead
 

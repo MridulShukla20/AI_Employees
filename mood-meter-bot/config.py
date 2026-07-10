@@ -13,6 +13,7 @@ DB_CONFIG = {
 }
 
 SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+SLACK_ADMIN_CHANNEL_ID = os.getenv("SLACK_ADMIN_CHANNEL_ID")
 
 KEKA_CONFIG = {
     "api_key": os.getenv("KEKA_API_KEY"),
